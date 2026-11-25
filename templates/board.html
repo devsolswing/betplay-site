@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BetPlay Casino Victim Reports — BetplayExposed</title>
+  <meta name="description" content="Victim reports about the BetPlay casino: stories from players BetPlay took money from. Post yours anonymously.">
+  <meta name="keywords" content="BetPlay casino, BetPlay casino reviews, BetPlay casino complaints, BetPlay victims">
+  <meta property="og:title" content="BetPlay Casino Victim Reports — BetplayExposed">
+  <meta property="og:description" content="Stories from players the BetPlay casino took money from. Post yours anonymously.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://betplayistrash.fun/board">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="{{ url_for('home') }}"><span class="b-white">Betplay</span><span class="b-red">Exposed</span></a>
+      <span class="tagline">Investigating. Exposing. Protecting.</span>
+    </header>
+
+    <main>
+      <div class="board-head">
+        <h1>Victim Reports</h1>
+        <p>Stories from players the BetPlay casino took money from. Read them. Share yours.</p>
+      </div>
+      <p class="count">{{ posts|length }} {{ 'story' if posts|length == 1 else 'stories' }} so far</p>
+
+      <form class="post-form" action="{{ url_for('api_create_post') }}" method="post">
+        <h2>Share your story</h2>
+        <p style="color: var(--grey); font-size: 14px;">Anonymous by default. Leave the name blank to post as Anonymous. No account, no email, nothing stored about you but what you type here.</p>
+        <div class="row">
+          <div>
+            <label for="name">Display name (optional)</label>
+            <input id="name" name="name" type="text" maxlength="80" placeholder="Anonymous">
+          </div>
+          <div>
+            <label for="amount_lost">Amount lost (optional)</label>
+            <input id="amount_lost" name="amount_lost" type="text" maxlength="40" placeholder="e.g. $200">
+          </div>
+        </div>
+        <label for="story">Your story *</label>
+        <textarea id="story" name="story" required maxlength="5000" placeholder="What did BetPlay do to you?"></textarea>
+        <div class="actions" style="justify-content: flex-start; margin-top: 18px;">
+          <button class="btn primary" type="submit">Post my story</button>
+        </div>
+      </form>
+
+      <div class="posts">
+        {% if posts %}
+          {% for post in posts %}
+          <article class="post">
+            <p class="meta">
+              <span class="who">{{ post.name if post.name else 'Anonymous' }}</span>
+              {% if post.amount_lost %}&middot; <span class="amt">lost {{ post.amount_lost }}</span>{% endif %}
+              &middot; {{ post.created_at }}
+            </p>
+            <p class="story">{{ post.story }}</p>
+          </article>
+          {% endfor %}
+        {% else %}
+          <p class="empty">No stories yet &mdash; be the first to share yours.</p>
+        {% endif %}
+      </div>
+
+      <p class="back"><a class="btn small" href="{{ url_for('home') }}">&larr; Back to home</a></p>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BetPlay Casino Exposed: Victim Reports | BetplayExposed</title>
+  <meta name="description" content="BetplayExposed — victim reports about the BetPlay casino. Players BetPlay took money from share their stories, anonymously. Read them before you play.">
+  <meta name="keywords" content="BetPlay casino, BetPlay casino reviews, BetPlay casino complaints, BetPlay scam, BetPlay victims, BetPlay stole my money">
+  <meta property="og:title" content="BetPlay Casino Exposed — Victim Reports">
+  <meta property="og:description" content="Players the BetPlay casino took money from tell their stories, anonymously.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://betplayistrash.fun/">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="{{ url_for('home') }}"><span class="b-white">Betplay</span><span class="b-red">Exposed</span></a>
+      <span class="tagline">Investigating. Exposing. Protecting.</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>
+          <span class="white">Betplay</span>
+          <span class="red">Is Cheating</span>
+          <span class="huge">100%</span>
+        </h1>
+        <p class="quote">&ldquo;I&rsquo;ve seen it in the algorithm &mdash;<br>the bets are <span class="red">placed against</span> you.&rdquo;</p>
+        <p class="shutdown"><span class="warn">&#9888;</span><span>Demand immediate shutdown<br>of their <span class="red">servers</span></span></p>
+      </section>
+
+      <section class="reel" aria-label="Slot machine showing 7 7 BAR">
+        <div class="reel-windows">
+          <div class="reel-window"><span class="sym">7</span></div>
+          <div class="reel-window"><span class="sym">7</span></div>
+          <div class="reel-window"><span class="sym bar">BAR</span></div>
+        </div>
+        <div class="reel-label">The house always wins. You never do.</div>
+      </section>
+
+      <nav class="menu" aria-label="Sections">
+        <h2>BetplayExposed</h2>
+        <ul>
+          <li>The Investigation <span class="soon">soon</span></li>
+          <li>Algorithm Evidence <span class="soon">soon</span></li>
+          <li><a href="{{ url_for('board') }}">Victim Reports</a> <span class="live">&larr; live</span></li>
+          <li>Data Leaks <span class="soon">soon</span></li>
+          <li>Take Action <span class="soon">soon</span></li>
+        </ul>
+      </nav>
+
+      <div class="actions">
+        <button class="btn" id="mission-open" type="button">Mission Statement</button>
+        <a class="btn primary" href="{{ url_for('board') }}">Join the Talks</a>
+      </div>
+
+      <p class="about">BetplayExposed collects victim reports about the BetPlay casino &mdash; players who lost money to BetPlay tell their stories here, anonymously, so the next player knows before they deposit.</p>
+
+      <p class="rigged">The system is rigged.<br>The house always wins.<br>You never do.</p>
+    </main>
+  </div>
+
+  <!-- Mission Statement popup -->
+  <div class="modal-backdrop" id="mission-modal" role="dialog" aria-modal="true" aria-labelledby="mission-title">
+    <div class="modal">
+      <button class="close" id="mission-close" type="button" aria-label="Close">&times;</button>
+      <h2 id="mission-title">Mission Statement</h2>
+      <p>This site gives a voice to people BetPlay took money from.</p>
+      <p>It started with the founder&rsquo;s own story: $200 taken from his wallet by BetPlay. He wasn&rsquo;t the only one &mdash; so this board exists for every victim to tell what happened to them, anonymously, in their own words.</p>
+      <p>Read the stories. Share yours. Warn the next player before they lose theirs.</p>
+      <p><strong>This site is not affiliated with BetPlay in any way.</strong></p>
+      <div class="actions" style="margin-top: 22px;">
+        <a class="btn primary" href="{{ url_for('board') }}">Join the Talks</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var modal = document.getElementById('mission-modal');
+    document.getElementById('mission-open').addEventListener('click', function () {
+      modal.classList.add('open');
+    });
+    document.getElementById('mission-close').addEventListener('click', function () {
+      modal.classList.remove('open');
+    });
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) modal.classList.remove('open');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') modal.classList.remove('open');
+    });
+  </script>
+</body>
+</html>

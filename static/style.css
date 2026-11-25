@@ -1,0 +1,335 @@
+/* BetplayExposed — black / red poster theme. Self-contained: no web fonts,
+   no external requests. Heavy system stack stands in for the poster type. */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #e30613;
+  --red-dark: #8f040d;
+  --ink: #050505;
+  --paper: #f2f2f2;
+  --grey: #9a9a9a;
+  --panel: #0d0d0d;
+  --line: #262626;
+}
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+a { color: inherit; }
+
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 20px 60px; }
+
+/* ---- header ---- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 22px 0 6px;
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  font-size: 28px;
+  letter-spacing: -1px;
+  text-decoration: none;
+}
+.brand .b-white { color: var(--paper); }
+.brand .b-red { color: var(--red); }
+.tagline {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--grey);
+  text-transform: uppercase;
+}
+
+/* ---- poster headline ---- */
+.hero { text-align: center; padding: 34px 0 8px; }
+.hero h1 {
+  font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  font-size: clamp(52px, 11vw, 120px);
+  text-shadow:
+    3px 0 0 rgba(227, 6, 19, .55),
+    -2px 0 0 rgba(255, 255, 255, .12);
+}
+.hero h1 .white { color: var(--paper); display: block; }
+.hero h1 .red { color: var(--red); display: block; }
+.hero h1 .huge { color: var(--red); display: block; font-size: 1.35em; }
+
+.quote {
+  margin: 26px auto 0;
+  max-width: 560px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.quote .red { color: var(--red); }
+
+.shutdown {
+  margin: 28px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: clamp(16px, 3.4vw, 24px);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.shutdown .warn {
+  color: var(--red);
+  font-size: 1.5em;
+  line-height: 1;
+}
+.shutdown .red { color: var(--red); }
+
+/* ---- slot reel (CSS-built) ---- */
+.reel {
+  margin: 34px auto 0;
+  max-width: 560px;
+  border: 3px solid #1c1c1c;
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 45%, #161616 100%);
+  box-shadow: 0 0 0 1px #000, 0 18px 40px rgba(227, 6, 19, .18), inset 0 0 60px rgba(0,0,0,.9);
+  overflow: hidden;
+  position: relative;
+}
+.reel::after {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 115%, rgba(227, 6, 19, .5), transparent 60%),
+    repeating-linear-gradient(115deg, transparent 0 90px, rgba(255,255,255,.02) 90px 92px);
+  pointer-events: none;
+}
+.reel-windows { display: flex; }
+.reel-window {
+  flex: 1;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 2px solid #000;
+  background: linear-gradient(180deg, #262626, #0b0b0b 30%, #101010 70%, #050505);
+  position: relative;
+}
+.reel-window:last-child { border-right: none; }
+.reel-window .sym {
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: 84px;
+  font-weight: 900;
+  color: var(--red);
+  text-shadow: 0 0 18px rgba(227, 6, 19, .65), 3px 3px 0 #3d0207;
+  transform: skewX(-4deg);
+}
+.reel-window .sym.bar {
+  font-size: 34px;
+  letter-spacing: 2px;
+  color: #d8d8d8;
+  background: #111;
+  border: 2px solid #d8d8d8;
+  padding: 6px 10px;
+  text-shadow: none;
+  transform: skewX(-4deg);
+}
+.reel-label {
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--grey);
+  text-transform: uppercase;
+  padding: 10px 0 12px;
+  background: #080808;
+}
+
+/* ---- side menu (poster list) ---- */
+.menu {
+  margin: 36px auto 0;
+  max-width: 560px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 16px 20px;
+}
+.menu h2 {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--grey);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.menu ul { list-style: none; }
+.menu li {
+  padding: 7px 0;
+  border-top: 1px solid #1a1a1a;
+  font-size: 16px;
+}
+.menu li:first-child { border-top: none; }
+.menu li a { text-decoration: none; font-weight: 700; }
+.menu li a:hover { color: var(--red); }
+.menu li .soon {
+  color: var(--grey);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-left: 8px;
+}
+.menu li .live { color: var(--red); font-weight: 700; }
+
+/* ---- buttons ---- */
+.actions {
+  margin: 36px auto 0;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-block;
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: 17px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 26px;
+  border: 2px solid var(--red);
+  cursor: pointer;
+  background: transparent;
+  color: var(--paper);
+}
+.btn:hover { background: rgba(227, 6, 19, .15); }
+.btn.primary {
+  background: var(--red);
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(227, 6, 19, .4);
+}
+.btn.primary:hover { background: #f31420; }
+.btn.small { font-size: 14px; padding: 11px 18px; }
+
+/* ---- footer ---- */
+.rigged {
+  margin: 40px auto 0;
+  max-width: 560px;
+  border: 1px solid var(--red-dark);
+  background: rgba(227, 6, 19, .08);
+  padding: 16px;
+  text-align: center;
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 1.7;
+  color: var(--red);
+  text-transform: uppercase;
+}
+
+/* ---- mission popup ---- */
+.modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, .85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+}
+.modal-backdrop.open { display: flex; }
+.modal {
+  background: #0d0d0d;
+  border: 2px solid var(--red);
+  max-width: 560px;
+  width: 100%;
+  padding: 28px;
+  position: relative;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.modal h2 {
+  font-family: "Arial Black", Arial, sans-serif;
+  color: var(--red);
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.modal p { margin-bottom: 14px; font-size: 16px; }
+.modal .close {
+  position: absolute; top: 10px; right: 14px;
+  background: none; border: none; color: var(--grey);
+  font-size: 26px; cursor: pointer;
+}
+.modal .close:hover { color: var(--paper); }
+
+/* ---- board page ---- */
+.board-head { text-align: center; padding: 30px 0 6px; }
+.board-head h1 {
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: clamp(34px, 7vw, 58px);
+  text-transform: uppercase;
+  color: var(--red);
+  letter-spacing: -1px;
+}
+.board-head p { color: var(--grey); margin-top: 6px; }
+.count { text-align: center; color: var(--grey); font-size: 14px; margin: 14px 0 26px; }
+
+.post-form {
+  max-width: 640px;
+  margin: 0 auto 36px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 22px;
+}
+.post-form h2 {
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.post-form label { display: block; font-size: 13px; color: var(--grey); margin: 12px 0 4px; text-transform: uppercase; letter-spacing: 1px; }
+.post-form input, .post-form textarea {
+  width: 100%;
+  background: #111;
+  border: 1px solid #333;
+  color: var(--paper);
+  padding: 10px 12px;
+  font-size: 15px;
+  font-family: inherit;
+}
+.post-form textarea { min-height: 120px; resize: vertical; }
+.post-form .row { display: flex; gap: 14px; flex-wrap: wrap; }
+.post-form .row > div { flex: 1; min-width: 180px; }
+
+.posts { max-width: 640px; margin: 0 auto; }
+.post {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 18px 20px;
+  margin-bottom: 16px;
+}
+.post .meta { font-size: 13px; color: var(--grey); margin-bottom: 8px; }
+.post .meta .who { color: var(--paper); font-weight: 700; }
+.post .meta .amt { color: var(--red); font-weight: 700; }
+.post .story { font-size: 16px; white-space: pre-wrap; }
+.empty {
+  text-align: center;
+  color: var(--grey);
+  border: 1px dashed #333;
+  padding: 30px 20px;
+  font-size: 16px;
+}
+.back { text-align: center; margin-top: 30px; }
+
+@media (max-width: 560px) {
+  .reel-window { height: 110px; }
+  .reel-window .sym { font-size: 60px; }
+  .reel-window .sym.bar { font-size: 24px; }
+}
